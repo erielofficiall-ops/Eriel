@@ -1,0 +1,717 @@
+    /* =====================================================
+       VARIABLES DE COLOR
+       Cambia aquí los colores globales del sitio.
+    ====================================================== */
+    :root {
+      --cream:   #f3e8dc;
+      --wine:    #6b1f2a;
+      --wine-lt: #8a2535;
+      --wine-bg: rgba(107,31,42,.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Textura de fondo (efecto papel) */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wrapper { position: relative; z-index: 1; }
+
+    /* =====================================================
+       TOP BAR
+    ====================================================== */
+    .topbar {
+      background: var(--wine);
+      color: var(--cream);
+      font-size: clamp(.6rem, 2.5vw, .72rem);
+      letter-spacing: .12em;
+      text-align: center;
+      padding: .5rem 1rem;
+      text-transform: uppercase;
+    }
+
+    /* =====================================================
+       NAVEGACIÓN PRINCIPAL
+    ====================================================== */
+    .navbar-eriel {
+      background: var(--cream);
+      border-bottom: 1px solid rgba(107,31,42,.2);
+      padding: .6rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(107,31,42,.08);
+    }
+
+    .navbar-eriel .navbar-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--wine);
+      letter-spacing: .08em;
+      text-decoration: none;
+    }
+
+    /* Logo pequeño en navbar */
+    .navbar-eriel .nav-logo {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      margin-right: .4rem;
+    }
+
+    /* Links del menú principal */
+    .navbar-eriel .nav-link {
+      font-family: 'Jost', sans-serif;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--wine) !important;
+      padding: .5rem .85rem !important;
+      transition: opacity .2s;
+    }
+    .navbar-eriel .nav-link:hover,
+    .navbar-eriel .nav-link.active { opacity: .65; }
+
+    /* Dropdown del menú */
+    .navbar-eriel .dropdown-menu {
+      border: 1px solid rgba(107,31,42,.2);
+      border-radius: 0;
+      background: var(--cream);
+      box-shadow: 0 8px 24px rgba(107,31,42,.12);
+      min-width: 220px;
+    }
+
+    .navbar-eriel .dropdown-item {
+      font-family: 'Jost', sans-serif;
+      font-size: .8rem;
+      letter-spacing: .07em;
+      color: var(--wine);
+      padding: .55rem 1.2rem;
+      transition: background .2s;
+    }
+    .navbar-eriel .dropdown-item:hover {
+      background: var(--wine-bg);
+      color: var(--wine);
+    }
+
+    /* Separador dentro del dropdown */
+    .navbar-eriel .dropdown-divider { border-color: rgba(107,31,42,.15); }
+
+    /* Encabezado de sección dentro del dropdown */
+    .navbar-eriel .dropdown-header {
+      font-size: .65rem;
+      letter-spacing: .12em;
+      color: rgba(107,31,42,.5);
+      text-transform: uppercase;
+      padding: .5rem 1.2rem .2rem;
+    }
+
+    /* Botón hamburguesa */
+    .navbar-toggler {
+      border: 1.5px solid var(--wine);
+      border-radius: 0;
+      padding: .3rem .6rem;
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%236b1f2a' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* =====================================================
+       HERO DEL CATÁLOGO
+    ====================================================== */
+    .catalog-hero {
+      text-align: center;
+      padding: clamp(2rem, 6vw, 3.5rem) 1rem clamp(1rem, 3vw, 1.5rem);
+      animation: fadeDown .8s ease both;
+    }
+    .catalog-hero h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      font-weight: 600;
+      color: var(--wine);
+      letter-spacing: .06em;
+    }
+    .catalog-hero p {
+      font-size: clamp(.85rem, 3vw, 1rem);
+      color: rgba(107,31,42,.6);
+      letter-spacing: .06em;
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      margin-top: .4rem;
+    }
+
+    /* Divisor decorativo */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      width: min(400px, 88%);
+      margin: 1.2rem auto 1.8rem;
+    }
+    .divider span { flex: 1; height: 1px; background: var(--wine); opacity: .3; }
+    .divider i    { color: var(--wine); opacity: .5; font-size: .7rem; }
+
+    /* =====================================================
+       BARRA DE FILTROS / BÚSQUEDA
+    ====================================================== */
+    .filter-bar {
+      background: #fff8f2;
+      border-top: 1px solid rgba(107,31,42,.1);
+      border-bottom: 1px solid rgba(107,31,42,.1);
+      padding: .85rem 0;
+      position: sticky;
+      top: 61px; /* altura de la navbar */
+      z-index: 900;
+    }
+
+    .filter-bar .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Chips de filtro por categoría */
+    .filter-chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+
+    .chip {
+      font-family: 'Jost', sans-serif;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      padding: .3rem .85rem;
+      border: 1.5px solid rgba(107,31,42,.35);
+      border-radius: 20px;
+      color: var(--wine);
+      background: transparent;
+      cursor: pointer;
+      transition: all .22s;
+      white-space: nowrap;
+    }
+    .chip:hover, .chip.active {
+      background: var(--wine);
+      color: var(--cream);
+      border-color: var(--wine);
+    }
+
+    /* Buscador */
+    .search-wrap { position: relative; }
+    .search-wrap input {
+      font-family: 'Jost', sans-serif;
+      font-size: .82rem;
+      color: var(--wine);
+      background: transparent;
+      border: 1.5px solid rgba(107,31,42,.3);
+      border-radius: 0;
+      padding: .38rem .85rem .38rem 2.1rem;
+      outline: none;
+      width: 180px;
+      transition: border-color .2s;
+    }
+    .search-wrap input::placeholder { color: rgba(107,31,42,.4); }
+    .search-wrap input:focus { border-color: var(--wine); }
+    .search-wrap .search-icon {
+      position: absolute;
+      left: .65rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(107,31,42,.45);
+      font-size: .82rem;
+      pointer-events: none;
+    }
+
+    /* =====================================================
+       GRID DE PRODUCTOS
+    ====================================================== */
+    .products-section {
+      padding: clamp(1.5rem, 4vw, 2.5rem) 0 3rem;
+    }
+
+    /* Contador de resultados */
+    .results-count {
+      font-size: .78rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: rgba(107,31,42,.55);
+      margin-bottom: 1.2rem;
+    }
+
+    /* Mensaje cuando no hay resultados */
+    .no-results {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: rgba(107,31,42,.4);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      display: none;
+    }
+
+    /* =====================================================
+       TARJETA DE PRODUCTO
+       Para cambiar el diseño de cada producto, edita aquí.
+    ====================================================== */
+    .product-card {
+      background: #fff8f2;
+      border: 1px solid rgba(107,31,42,.13);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: transform .28s, box-shadow .28s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(107,31,42,.14);
+    }
+
+    /* Imagen del producto */
+    .product-img-wrap {
+      position: relative;
+      overflow: hidden;
+      background: #fdf4ee;
+      aspect-ratio: 1 / 1; /* cuadrada */
+    }
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;          /* recorta para llenar */
+      object-position: center;
+      transition: transform .4s ease;
+      display: block;
+    }
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    /* Badge de categoría sobre la imagen */
+    .product-badge {
+      position: absolute;
+      top: .7rem;
+      left: .7rem;
+      background: var(--wine);
+      color: var(--cream);
+      font-size: .6rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .18rem .55rem;
+      border-radius: 20px;
+    }
+
+    /* Badge de sin stock */
+    .badge-agotado {
+      position: absolute;
+      inset: 0;
+      background: rgba(107,31,42,.55);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      letter-spacing: .1em;
+      font-style: italic;
+    }
+
+    /* Cuerpo de la tarjeta */
+    .product-body {
+      padding: 1rem 1.1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+
+    .product-brand {
+      font-size: .65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(107,31,42,.55);
+    }
+
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: var(--wine);
+      line-height: 1.25;
+    }
+
+    .product-type {
+      font-size: .72rem;
+      color: rgba(107,31,42,.5);
+      font-style: italic;
+    }
+
+    .product-desc {
+      font-size: .8rem;
+      line-height: 1.55;
+      color: #555;
+      margin-top: .15rem;
+      flex: 1;
+    }
+
+    /* Precio y stock */
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: .6rem;
+      padding-top: .6rem;
+      border-top: 1px solid rgba(107,31,42,.1);
+    }
+
+    .product-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--wine);
+    }
+
+    .product-stock {
+      font-size: .68rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+    .stock-ok   { color: #4a7c59; }
+    .stock-low  { color: #b85c00; }
+    .stock-none { color: #9e2a2b; }
+
+    /* Botones de acción */
+    .product-actions {
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+      padding: 0 1.1rem 1.1rem;
+    }
+
+    /* Botón principal (agregar al pedido) */
+    .btn-add {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: var(--wine);
+      color: var(--cream);
+      border: 1.5px solid var(--wine);
+      border-radius: 0;
+      padding: .55rem;
+      cursor: pointer;
+      transition: background .25s, transform .18s;
+      width: 100%;
+    }
+    .btn-add:hover { background: var(--wine-lt); transform: translateY(-1px); }
+    .btn-add:disabled {
+      background: rgba(107,31,42,.25);
+      border-color: transparent;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Botones sociales (WhatsApp / Instagram) */
+    .btn-social-row { display: flex; gap: .45rem; }
+
+    .btn-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border: 1.5px solid rgba(107,31,42,.3);
+      border-radius: 0;
+      padding: .48rem .5rem;
+      cursor: pointer;
+      transition: all .22s;
+      text-decoration: none;
+      flex: 1;
+      background: transparent;
+      color: var(--wine);
+    }
+    .btn-social:hover { background: var(--wine-bg); color: var(--wine); }
+    .btn-social i { font-size: .9rem; }
+
+    /* =====================================================
+       CARRITO / PEDIDO FLOTANTE
+    ====================================================== */
+    .cart-fab {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--wine);
+      color: var(--cream);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 6px 20px rgba(107,31,42,.35);
+      cursor: pointer;
+      transition: transform .2s, background .2s;
+      z-index: 1100;
+    }
+    .cart-fab:hover { background: var(--wine-lt); transform: scale(1.08); }
+    .cart-fab .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #fff;
+      color: var(--wine);
+      font-size: .65rem;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--wine);
+      display: none; /* se muestra con JS cuando hay items */
+    }
+
+    /* Panel lateral del pedido */
+    .cart-panel {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: min(400px, 100vw);
+      height: 100dvh;
+      background: var(--cream);
+      border-left: 1px solid rgba(107,31,42,.2);
+      box-shadow: -8px 0 32px rgba(107,31,42,.15);
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      transition: right .35s cubic-bezier(.4,0,.2,1);
+      overflow: hidden;
+    }
+    .cart-panel.open { right: 0; }
+
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(107,31,42,.25);
+      z-index: 1150;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s;
+    }
+    .cart-overlay.open { opacity: 1; pointer-events: all; }
+
+    .cart-header {
+      background: var(--wine);
+      color: var(--cream);
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .cart-header h5 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      letter-spacing: .06em;
+      margin: 0;
+    }
+    .cart-header button {
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 1.3rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .cart-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: rgba(107,31,42,.4);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+    }
+
+    /* Ítem dentro del carrito */
+    .cart-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      padding: .75rem 0;
+      border-bottom: 1px solid rgba(107,31,42,.1);
+    }
+    .cart-item img {
+      width: 54px;
+      height: 54px;
+      object-fit: cover;
+      border: 1px solid rgba(107,31,42,.12);
+      flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; }
+    .cart-item-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--wine);
+    }
+    .cart-item-brand { font-size: .7rem; color: rgba(107,31,42,.5); }
+    .cart-item-price { font-size: .85rem; color: var(--wine); font-weight: 500; margin-top: .15rem; }
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: rgba(107,31,42,.4);
+      font-size: .85rem;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      transition: color .2s;
+    }
+    .cart-item-remove:hover { color: var(--wine); }
+
+    /* Footer del carrito */
+    .cart-footer {
+      border-top: 1px solid rgba(107,31,42,.2);
+      padding: 1rem;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+    }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--wine);
+    }
+
+    /* Botones de envío en el carrito */
+    .btn-send {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--wine);
+      border-radius: 0;
+      padding: .7rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .22s;
+    }
+    .btn-send-wa   { background: var(--wine); color: var(--cream); }
+    .btn-send-wa:hover { background: var(--wine-lt); color: var(--cream); }
+    .btn-send-ig   { background: transparent; color: var(--wine); }
+    .btn-send-ig:hover { background: var(--wine-bg); color: var(--wine); }
+
+    /* =====================================================
+       FOOTER
+    ====================================================== */
+    .footer {
+      background: var(--wine);
+      color: rgba(255,255,255,.8);
+      padding: 50px 0 25px;
+    }
+    .footer-title {
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .footer-link {
+      color: rgba(255,255,255,.7);
+      text-decoration: none;
+      display: block;
+      margin-bottom: .5rem;
+      font-size: .85rem;
+      transition: all .3s;
+    }
+    .footer-link:hover { color: var(--cream); padding-left: 5px; }
+    .social-icons a {
+      color: var(--cream);
+      font-size: 1.4rem;
+      margin-right: 14px;
+      transition: all .3s;
+      text-decoration: none;
+    }
+    .social-icons a:hover { color: rgba(255,255,255,.5); }
+    .footer .copyright {
+      border-top: 1px solid rgba(243,232,220,.2);
+      margin-top: 1.5rem;
+      padding-top: .75rem;
+      text-align: center;
+      font-size: .8rem;
+      opacity: .7;
+    }
+
+    /* =====================================================
+       ANIMACIONES
+    ====================================================== */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .anim-1 { animation: fadeIn .7s .2s ease both; }
+    .anim-2 { animation: fadeIn .7s .35s ease both; }
+    .anim-3 { animation: fadeIn .7s .5s ease both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+    @media (max-width: 576px) {
+      .search-wrap input { width: 140px; }
+      .filter-bar .container { gap: .5rem; }
+      .cart-panel { width: 100vw; }
+    }
